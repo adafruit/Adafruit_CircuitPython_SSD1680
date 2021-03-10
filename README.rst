@@ -37,11 +37,11 @@ or individual libraries can be installed using
 
 * Adafruit 2.13" 250x122 Tri-Color eInk / ePaper Display with SRAM - SSD1680 Driver
 
-`Purchase one from the Adafruit shop <http://www.adafruit.com/products/4947>`_
+`Purchase the Breakout from the Adafruit shop <http://www.adafruit.com/products/4947>`_
 
 * Adafruit 2.13" HD Tri-Color eInk / ePaper Display FeatherWing - 250x122 RW Panel with SSD1680
 
-`Purchase one from the Adafruit shop <http://www.adafruit.com/products/4814>`_
+`Purchase the FeatherWing from the Adafruit shop <http://www.adafruit.com/products/4814>`_
 
 Usage Example
 =============
