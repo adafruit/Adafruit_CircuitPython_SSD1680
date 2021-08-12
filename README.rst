@@ -22,7 +22,6 @@ Introduction
 
 CircuitPython `displayio` driver for SSD1680-based ePaper displays
 
-
 Dependencies
 =============
 This driver depends on:
@@ -42,6 +41,31 @@ or individual libraries can be installed using
 * Adafruit 2.13" HD Tri-Color eInk / ePaper Display FeatherWing - 250x122 RW Panel with SSD1680
 
 `Purchase the FeatherWing from the Adafruit shop <http://www.adafruit.com/products/4814>`_
+
+Installing from PyPI
+=====================
+
+On supported GNU/Linux systems like the Raspberry Pi, you can install the driver locally `from
+PyPI <https://pypi.org/project/adafruit-circuitpython-ssd1680/>`_. To install for current user:
+
+.. code-block:: shell
+
+    pip3 install adafruit-circuitpython-ssd1680
+
+To install system-wide (this may be required in some cases):
+
+.. code-block:: shell
+
+    sudo pip3 install adafruit-circuitpython-ssd1680
+
+To install in a virtual environment in your current project:
+
+.. code-block:: shell
+
+    mkdir project-name && cd project-name
+    python3 -m venv .env
+    source .env/bin/activate
+    pip3 install adafruit-circuitpython-ssd1680
 
 Usage Example
 =============
@@ -78,21 +102,22 @@ Usage Example
 
     g = displayio.Group()
 
-    f = open("/display-ruler.bmp", "rb")
-
-    pic = displayio.OnDiskBitmap(f)
     # CircuitPython 6 & 7 compatible
+    f = open("/display-ruler.bmp", "rb")
+    pic = displayio.OnDiskBitmap(f)
     t = displayio.TileGrid(
         pic, pixel_shader=getattr(pic, "pixel_shader", displayio.ColorConverter())
     )
-    # CircuitPython 7 compatible only
+
+    # # CircuitPython 7 compatible only
+    # pic = displayio.OnDiskBitmap("/display-ruler.bmp")
     # t = displayio.TileGrid(pic, pixel_shader=pic.pixel_shader)
+
     g.append(t)
 
     display.show(g)
 
     display.refresh()
-
     print("refreshed")
 
     time.sleep(120)
@@ -108,5 +133,5 @@ before contributing to help this project stay welcoming.
 Documentation
 =============
 
-For information on building library documentation, please check out
-`this guide <https://learn.adafruit.com/creating-and-sharing-a-circuitpython-library/sharing-our-docs-on-readthedocs#sphinx-5-1>`_.
+For information on building library documentation, please check out `this guide
+<https://learn.adafruit.com/creating-and-sharing-a-circuitpython-library/sharing-our-docs-on-readthedocs#sphinx-5-1>`_.
