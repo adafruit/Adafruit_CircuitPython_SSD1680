@@ -2,7 +2,7 @@ Introduction
 ============
 
 .. image:: https://readthedocs.org/projects/adafruit-circuitpython-ssd1680/badge/?version=latest
-    :target: https://circuitpython.readthedocs.io/projects/ssd1680/en/latest/
+    :target: https://docs.circuitpython.org/projects/ssd1680/en/latest/
     :alt: Documentation Status
 
 
@@ -126,7 +126,7 @@ Usage Example
 Documentation
 =============
 
-API documentation for this library can be found on `Read the Docs <https://circuitpython.readthedocs.io/projects/ssd1680/en/latest/>`_.
+API documentation for this library can be found on `Read the Docs <https://docs.circuitpython.org/projects/ssd1680/en/latest/>`_.
 
 Contributing
 ============
