@@ -63,7 +63,7 @@ class SSD1680(displayio.EPaperDisplay):
           Display rotation
     """
 
-    def __init__(self, bus, **kwargs):
+    def __init__(self, bus: displayio.Fourwire, **kwargs) -> None:
         stop_sequence = bytearray(_STOP_SEQUENCE)
         try:
             bus.reset()
