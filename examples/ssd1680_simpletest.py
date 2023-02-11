@@ -9,6 +9,11 @@ Supported products:
     * https://www.adafruit.com/product/4947
   * Adafruit 2.13" Tri-Color eInk Display FeatherWing
     * https://www.adafruit.com/product/4814
+
+To use Adafruit 2.13" Monochrome FeatherWing - 250x122 Monochrome with SSD1680:
+  * https://www.adafruit.com/product/4195
+  Set change height in display from 122 to 128
+
 """
 
 import time
