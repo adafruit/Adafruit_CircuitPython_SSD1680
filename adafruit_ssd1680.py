@@ -97,6 +97,5 @@ class SSD1680(displayio.EPaperDisplay):
             set_current_column_command=0x4E,
             set_current_row_command=0x4F,
             refresh_display_command=0x20,
-            colstart=column_correction,
             always_toggle_chip_select=True,
         )
