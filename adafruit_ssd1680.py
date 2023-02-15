@@ -18,6 +18,7 @@ Implementation Notes
 
 * `Adafruit 2.13" Tri-Color eInk Display Breakout <https://www.adafruit.com/product/4947>`_
 * `Adafruit 2.13" Tri-Color eInk Display FeatherWing <https://www.adafruit.com/product/4814>`_
+* `Adafruit 2.13" Mono eInk Display FeatherWing <https://www.adafruit.com/product/4195>`_
 
 
 **Software and Dependencies:**
@@ -51,6 +52,7 @@ class SSD1680(displayio.EPaperDisplay):
     r"""SSD1680 driver
 
     :param bus: The data bus the display is on
+    :param column_correction: Adjust colstart, defaults to 1 (``int``)
     :param \**kwargs:
         See below
 
@@ -63,7 +65,7 @@ class SSD1680(displayio.EPaperDisplay):
           Display rotation
     """
 
-    def __init__(self, bus: displayio.Fourwire, **kwargs) -> None:
+    def __init__(self, bus: displayio.Fourwire, column_correction=1, **kwargs) -> None:
         stop_sequence = bytearray(_STOP_SEQUENCE)
         try:
             bus.reset()
@@ -95,6 +97,6 @@ class SSD1680(displayio.EPaperDisplay):
             set_current_column_command=0x4E,
             set_current_row_command=0x4F,
             refresh_display_command=0x20,
-            colstart=1,
+            colstart=column_correction,
             always_toggle_chip_select=True,
         )
