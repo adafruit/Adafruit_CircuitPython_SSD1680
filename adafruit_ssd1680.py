@@ -52,7 +52,6 @@ class SSD1680(displayio.EPaperDisplay):
     r"""SSD1680 driver
 
     :param bus: The data bus the display is on
-    :param column_correction: Adjust colstart, defaults to 1 (``int``)
     :param \**kwargs:
         See below
 
