@@ -37,7 +37,7 @@ time.sleep(1)
 # For issues with display not updating top/bottom rows correctly set column_correction to 8
 display = adafruit_ssd1680.SSD1680(
     display_bus,
-    column_correction=1,
+    colstart=1,
     width=250,
     height=122,
     busy_pin=epd_busy,
