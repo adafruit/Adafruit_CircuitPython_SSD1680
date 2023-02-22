@@ -24,11 +24,14 @@ Table of Contents
 .. toctree::
     :caption: Tutorials
 
+    Adafruit 2.13" eInk Display Breakouts and FeatherWings <https://learn.adafruit.com/adafruit-2-13-eink-display-breakouts-and-featherwings>
+
 .. toctree::
     :caption: Related Products
 
     Adafruit 2.13" 250x122 Tri-Color eInk / ePaper Display with SRAM - SSD1680 Driver <https://www.adafruit.com/product/4947>
     Adafruit 2.13" HD Tri-Color eInk / ePaper Display FeatherWing <https://www.adafruit.com/product/4814>
+    Adafruit 2.13" Mono eInk Display FeatherWing <https://www.adafruit.com/product/4195>
 
 .. toctree::
     :caption: Other Links
