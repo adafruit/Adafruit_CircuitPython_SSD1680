@@ -101,4 +101,3 @@ class SSD1680(displayio.EPaperDisplay):
             always_toggle_chip_select=False,
             address_little_endian=True
         )
- 

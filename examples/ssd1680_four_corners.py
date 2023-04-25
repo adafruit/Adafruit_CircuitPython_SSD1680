@@ -13,7 +13,6 @@ import time
 import board
 import busio
 import displayio
-import digitalio
 import terminalio
 import adafruit_ssd1680
 
@@ -29,21 +28,17 @@ epd_reset = board.EPD_RESET
 epd_busy = board.EPD_BUSY
 
 display_bus = displayio.FourWire(
-  spi, 
-  command=epd_dc, 
-  chip_select=epd_cs, 
-  reset=epd_reset, 
-  baudrate=1000000
+    spi, command=epd_dc, chip_select=epd_cs, reset=epd_reset, baudrate=1000000
 )
 display = adafruit_ssd1680.SSD1680(
-  display_bus,
-  colstart=8,
-  width=250,
-  height=122,
-  busy_pin=epd_busy,
-  highlight_color=0xFFFFFF,
-  rotation=270,
-  seconds_per_frame=10
+    display_bus,
+    colstart=8,
+    width=250,
+    height=122,
+    busy_pin=epd_busy,
+    highlight_color=0xFFFFFF,
+    rotation=270,
+    seconds_per_frame=10,
 )
 
 # Make the display context
@@ -52,25 +47,30 @@ display.show(main_group)
 
 palette = displayio.Palette(2)
 palette[0] = 0x000000
-palette[1] = 0xffffff
+palette[1] = 0xFFFFFF
 
-zero_glyph = terminalio.FONT.get_glyph(ord('0'))
+zero_glyph = terminalio.FONT.get_glyph(ord("0"))
 
 padding = max(zero_glyph.height, zero_glyph.width) + 1
-label = displayio.TileGrid(terminalio.FONT.bitmap, pixel_shader=palette, tile_width=zero_glyph.width, tile_height=zero_glyph.height)
+label = displayio.TileGrid(
+    terminalio.FONT.bitmap,
+    pixel_shader=palette,
+    tile_width=zero_glyph.width,
+    tile_height=zero_glyph.height,
+)
 main_group.append(label)
 
 # Number each of the 4 corners
 i = 0
 while True:
     if i % 2 == 0:
-      label.x = padding
+        label.x = padding
     else:
-      label.x = display.width - padding - zero_glyph.width
+        label.x = display.width - padding - zero_glyph.width
     if (i % 4) // 2 == 0:
-      label.y = padding
+        label.y = padding
     else:
-      label.y = display.height - padding - zero_glyph.height
+        label.y = display.height - padding - zero_glyph.height
 
     label[0] = zero_glyph.tile_index + i
 
