@@ -64,4 +64,14 @@ with open("/display-ruler.bmp", "rb") as f:
 
     print("refreshed")
 
-    time.sleep(120)
+    time.sleep(display.time_to_refresh + 5)
+    # Always refresh a little longer. It's not a problem to refresh
+    # a few seconds more, but it's terrible to refresh too early
+    # (the display will throw an exception when if the refresh
+    # is too soon)
+    print("waited correct time")
+
+
+# Keep the display the same
+while True:
+    time.sleep(10)
