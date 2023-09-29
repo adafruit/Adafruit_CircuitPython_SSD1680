@@ -66,7 +66,7 @@ class SSD1680(displayio.EPaperDisplay):
           Display rotation
     """
 
-    def __init__(self, bus: displayio.Fourwire, **kwargs) -> None:
+    def __init__(self, bus: displayio.FourWire, **kwargs) -> None:
         if "colstart" not in kwargs:
             kwargs["colstart"] = 1
         stop_sequence = bytearray(_STOP_SEQUENCE)
