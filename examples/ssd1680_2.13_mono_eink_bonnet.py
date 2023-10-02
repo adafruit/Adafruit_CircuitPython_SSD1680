@@ -29,7 +29,9 @@ epd_dc = board.D22
 epd_reset = board.D27  # Set to None for FeatherWing
 epd_busy = board.D17  # Set to None for FeatherWing
 
-display_bus = displayio.FourWire(spi, command=epd_dc, chip_select=epd_cs, reset=epd_reset, baudrate=1000000)
+display_bus = displayio.FourWire(
+    spi, command=epd_dc, chip_select=epd_cs, reset=epd_reset, baudrate=1000000
+)
 time.sleep(1)
 
 # For issues with display not updating top/bottom rows correctly set colstart to 8
