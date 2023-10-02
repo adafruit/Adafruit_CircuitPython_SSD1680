@@ -45,9 +45,7 @@ g = displayio.Group()
 with open("/display-ruler.bmp", "rb") as f:
     pic = displayio.OnDiskBitmap(f)
 
-    t = displayio.TileGrid(
-        pic, pixel_shader=getattr(pic, "pixel_shader", displayio.ColorConverter())
-    )
+    t = displayio.TileGrid(pic, pixel_shader=pic.pixel_shader)
 
     g.append(t)
 
