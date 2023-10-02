@@ -68,7 +68,7 @@ class SSD1680(displayio.EPaperDisplay):
 
     def __init__(self, bus: displayio.FourWire, **kwargs) -> None:
         if "colstart" not in kwargs:
-            kwargs["colstart"] = 1
+            kwargs["colstart"] = 8
         stop_sequence = bytearray(_STOP_SEQUENCE)
         try:
             bus.reset()
