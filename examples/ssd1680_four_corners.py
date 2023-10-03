@@ -32,7 +32,6 @@ display_bus = displayio.FourWire(
 )
 display = adafruit_ssd1680.SSD1680(
     display_bus,
-    colstart=8,
     width=250,
     height=122,
     busy_pin=epd_busy,
