@@ -13,6 +13,7 @@ import time
 import board
 import busio
 import displayio
+import fourwire
 import terminalio
 import adafruit_ssd1680
 
@@ -27,7 +28,7 @@ epd_dc = board.EPD_DC
 epd_reset = board.EPD_RESET
 epd_busy = board.EPD_BUSY
 
-display_bus = displayio.FourWire(
+display_bus = fourwire.FourWire(
     spi, command=epd_dc, chip_select=epd_cs, reset=epd_reset, baudrate=1000000
 )
 display = adafruit_ssd1680.SSD1680(
@@ -42,7 +43,7 @@ display = adafruit_ssd1680.SSD1680(
 
 # Make the display context
 main_group = displayio.Group()
-display.show(main_group)
+display.root_group = main_group
 
 palette = displayio.Palette(2)
 palette[0] = 0x000000

@@ -75,6 +75,7 @@ Usage Example
     import time
     import board
     import displayio
+    import fourwire
     import adafruit_ssd1680
 
     displayio.release_displays()
@@ -86,7 +87,7 @@ Usage Example
     epd_reset = board.D8    # Set to None for FeatherWing
     epd_busy = board.D7    # Set to None for FeatherWing
 
-    display_bus = displayio.FourWire(
+    display_bus = fourwire.FourWire(
         spi, command=epd_dc, chip_select=epd_cs, reset=epd_reset, baudrate=1000000
     )
     time.sleep(1)
@@ -115,7 +116,7 @@ Usage Example
 
     g.append(t)
 
-    display.show(g)
+    display.root_group = g
 
     display.refresh()
     print("refreshed")
