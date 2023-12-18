@@ -28,7 +28,13 @@ Implementation Notes
 
 """
 
-import displayio
+try:
+    from epaperdisplay import EPaperDisplay
+    from fourwire import FourWire
+except ImportError:
+    from displayio import EPaperDisplay
+    from displayio import FourWire
+
 
 __version__ = "0.0.0+auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_SSD1680.git"
@@ -50,7 +56,7 @@ _STOP_SEQUENCE = b"\x10\x81\x01\x64"  # Deep Sleep
 
 
 # pylint: disable=too-few-public-methods
-class SSD1680(displayio.EPaperDisplay):
+class SSD1680(EPaperDisplay):
     r"""SSD1680 driver
 
     :param bus: The data bus the display is on
@@ -66,7 +72,7 @@ class SSD1680(displayio.EPaperDisplay):
           Display rotation
     """
 
-    def __init__(self, bus: displayio.FourWire, **kwargs) -> None:
+    def __init__(self, bus: FourWire, **kwargs) -> None:
         if "colstart" not in kwargs:
             kwargs["colstart"] = 8
         stop_sequence = bytearray(_STOP_SEQUENCE)
