@@ -100,7 +100,6 @@ class SSD1680(EPaperDisplay):
             busy_state=True,
             write_black_ram_command=0x24,
             write_color_ram_command=0x26,
-            black_bits_inverted=False,
             set_column_window_command=0x44,
             set_row_window_command=0x45,
             set_current_column_command=0x4E,
