@@ -12,15 +12,12 @@ Supported products:
 """
 
 import time
+
 import board
 import displayio
-import adafruit_ssd1680
+from fourwire import FourWire
 
-# For 8.x.x and 9.x.x. When 8.x.x is discontinued as a stable release, change this.
-try:
-    from fourwire import FourWire
-except ImportError:
-    from displayio import FourWire
+import adafruit_ssd1680
 
 displayio.release_displays()
 

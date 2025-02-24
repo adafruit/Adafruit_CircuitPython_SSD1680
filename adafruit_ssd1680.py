@@ -28,12 +28,14 @@ Implementation Notes
 
 """
 
+from epaperdisplay import EPaperDisplay
+
 try:
-    from epaperdisplay import EPaperDisplay
+    import typing
+
     from fourwire import FourWire
 except ImportError:
-    from displayio import EPaperDisplay
-    from displayio import FourWire
+    pass
 
 
 __version__ = "0.0.0+auto.0"
@@ -42,7 +44,7 @@ __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_SSD1680.git"
 _START_SEQUENCE = (
     b"\x12\x80\x14"  # soft reset and wait 20ms
     b"\x11\x01\x03"  # Ram data entry mode
-    b"\x3C\x01\x05"  # border color
+    b"\x3c\x01\x05"  # border color
     b"\x2c\x01\x36"  # Set vcom voltage
     b"\x03\x01\x17"  # Set gate voltage
     b"\x04\x03\x41\x00\x32"  # Set source voltage
@@ -106,5 +108,5 @@ class SSD1680(EPaperDisplay):
             set_current_row_command=0x4F,
             refresh_display_command=0x20,
             always_toggle_chip_select=False,
-            address_little_endian=True
+            address_little_endian=True,
         )
