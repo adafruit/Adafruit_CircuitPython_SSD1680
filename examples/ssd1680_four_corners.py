@@ -10,17 +10,14 @@
 # pylint: disable=no-member
 
 import time
+
 import board
 import busio
 import displayio
 import terminalio
-import adafruit_ssd1680
+from fourwire import FourWire
 
-# For 8.x.x and 9.x.x. When 8.x.x is discontinued as a stable release, change this.
-try:
-    from fourwire import FourWire
-except ImportError:
-    from displayio import FourWire
+import adafruit_ssd1680
 
 displayio.release_displays()
 
@@ -33,9 +30,7 @@ epd_dc = board.EPD_DC
 epd_reset = board.EPD_RESET
 epd_busy = board.EPD_BUSY
 
-display_bus = FourWire(
-    spi, command=epd_dc, chip_select=epd_cs, reset=epd_reset, baudrate=1000000
-)
+display_bus = FourWire(spi, command=epd_dc, chip_select=epd_cs, reset=epd_reset, baudrate=1000000)
 display = adafruit_ssd1680.SSD1680(
     display_bus,
     width=250,

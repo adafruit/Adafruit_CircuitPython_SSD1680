@@ -16,15 +16,12 @@ Supported products:
 """
 
 import time
+
 import board
 import displayio
-import adafruit_ssd1680
+from fourwire import FourWire
 
-# For 8.x.x and 9.x.x. When 8.x.x is discontinued as a stable release, change this.
-try:
-    from fourwire import FourWire
-except ImportError:
-    from displayio import FourWire
+import adafruit_ssd1680
 
 displayio.release_displays()
 
@@ -35,9 +32,7 @@ epd_dc = board.D10
 epd_reset = board.D8  # Set to None for FeatherWing
 epd_busy = board.D7  # Set to None for FeatherWing
 
-display_bus = FourWire(
-    spi, command=epd_dc, chip_select=epd_cs, reset=epd_reset, baudrate=1000000
-)
+display_bus = FourWire(spi, command=epd_dc, chip_select=epd_cs, reset=epd_reset, baudrate=1000000)
 time.sleep(1)
 
 # For issues with display not updating top/bottom rows correctly set colstart to 8
