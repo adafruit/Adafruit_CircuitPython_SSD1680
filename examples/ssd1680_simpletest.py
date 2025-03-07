@@ -50,7 +50,8 @@ display = adafruit_ssd1680.SSD1680(
 
 g = displayio.Group()
 
-with open("/display_ruler.bmp", "rb") as f:
+# Note: Check the name of the file. Sometimes the dash is changed to an underscore
+with open("/display-ruler.bmp", "rb") as f:
     pic = displayio.OnDiskBitmap(f)
     t = displayio.TileGrid(pic, pixel_shader=pic.pixel_shader)
     g.append(t)
