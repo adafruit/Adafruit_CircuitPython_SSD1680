@@ -35,7 +35,7 @@ epd_busy = board.D17  # Set to None for FeatherWing
 display_bus = FourWire(spi, command=epd_dc, chip_select=epd_cs, reset=epd_reset, baudrate=1000000)
 time.sleep(1)
 
-# For issues with display not updating top/bottom rows correctly set colstart to 8
+# For issues with display not updating top/bottom rows correctly try setting colstart to 8 or 0
 display = adafruit_ssd1680.SSD1680(
     display_bus,
     width=250,
@@ -43,6 +43,7 @@ display = adafruit_ssd1680.SSD1680(
     busy_pin=epd_busy,
     highlight_color=0xFF0000,
     rotation=90,
+    colstart=-8,
 )
 
 
