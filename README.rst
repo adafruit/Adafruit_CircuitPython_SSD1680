@@ -103,16 +103,8 @@ Usage Example
 
     g = displayio.Group()
 
-    # CircuitPython 6 & 7 compatible
-    f = open("/display-ruler.bmp", "rb")
-    pic = displayio.OnDiskBitmap(f)
-    t = displayio.TileGrid(
-        pic, pixel_shader=getattr(pic, "pixel_shader", displayio.ColorConverter())
-    )
-
-    # # CircuitPython 7 compatible only
-    # pic = displayio.OnDiskBitmap("/display-ruler.bmp")
-    # t = displayio.TileGrid(pic, pixel_shader=pic.pixel_shader)
+    pic = displayio.OnDiskBitmap("/display-ruler.bmp")
+    t = displayio.TileGrid(pic, pixel_shader=pic.pixel_shader)
 
     g.append(t)
 
