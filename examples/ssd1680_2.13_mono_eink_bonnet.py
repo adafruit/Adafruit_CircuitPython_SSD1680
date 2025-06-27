@@ -49,23 +49,23 @@ display = adafruit_ssd1680.SSD1680(
 
 g = displayio.Group()
 
-with open("display-ruler.bmp", "rb") as f:
-    pic = displayio.OnDiskBitmap(f)
-    t = displayio.TileGrid(pic, pixel_shader=pic.pixel_shader)
-    g.append(t)
 
-    display.root_group = g
+pic = displayio.OnDiskBitmap("/display-ruler.bmp")
+t = displayio.TileGrid(pic, pixel_shader=pic.pixel_shader)
+g.append(t)
 
-    display.refresh()
+display.root_group = g
 
-    print("refreshed")
+display.refresh()
 
-    time.sleep(display.time_to_refresh + 5)
-    # Always refresh a little longer. It's not a problem to refresh
-    # a few seconds more, but it's terrible to refresh too early
-    # (the display will throw an exception when if the refresh
-    # is too soon)
-    print("waited correct time")
+print("refreshed")
+
+time.sleep(display.time_to_refresh + 5)
+# Always refresh a little longer. It's not a problem to refresh
+# a few seconds more, but it's terrible to refresh too early
+# (the display will throw an exception when if the refresh
+# is too soon)
+print("waited correct time")
 
 
 # Keep the display the same
