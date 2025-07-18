@@ -52,7 +52,7 @@ g = displayio.Group()
 
 # Note: Check the name of the file. Sometimes the dash is changed to an underscore
 
-pic = displayio.OnDiskBitmap("/display-ruler.bmp")
+pic = displayio.OnDiskBitmap("/display-ruler-640x360.bmp")
 t = displayio.TileGrid(pic, pixel_shader=pic.pixel_shader)
 g.append(t)
 
