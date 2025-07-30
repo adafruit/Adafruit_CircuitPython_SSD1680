@@ -1,23 +1,14 @@
-# SPDX-FileCopyrightText: 2017 Scott Shawcroft, written for Adafruit Industries
+# SPDX-FileCopyrightText: 2025 Scott Shawcroft, written for Adafruit Industries
 # SPDX-FileCopyrightText: Copyright (c) 2021 Melissa LeBlanc-Williams for Adafruit Industries
 #
 # SPDX-License-Identifier: Unlicense
 
-"""Simple test script for 2.13" 250x122 tri-color display.
-Supported products:
-  * Adafruit 2.13" Tri-Color eInk Display Breakout
-    * https://www.adafruit.com/product/4947
-  * Adafruit 2.13" Tri-Color eInk Display FeatherWing
-    * https://www.adafruit.com/product/4814
-  * Adafruit 2.13" Mono eInk Display FeatherWing
-    * https://www.adafruit.com/product/4195
-
-
-"""
+"""Simple test script for 2.9" 296x128 display. This example runs it in mono mode."""
 
 import time
 
 import board
+import busio
 import displayio
 from fourwire import FourWire
 
@@ -25,30 +16,22 @@ import adafruit_ssd1680
 
 displayio.release_displays()
 
-# This pinout works on a Metro M4 and may need to be altered for other boards.
-spi = board.SPI()  # Uses SCK and MOSI
-epd_cs = board.CE0
-epd_dc = board.D22
-epd_reset = board.D27  # Set to None for FeatherWing
-epd_busy = board.D17  # Set to None for FeatherWing
+# This pinout works on a MagTag with the newer screen and may need to be altered for other boards.
+spi = busio.SPI(board.EPD_SCK, board.EPD_MOSI)  # Uses SCK and MOSI
+epd_cs = board.EPD_CS
+epd_dc = board.EPD_DC
+epd_reset = board.EPD_RESET
+epd_busy = board.EPD_BUSY
 
 display_bus = FourWire(spi, command=epd_dc, chip_select=epd_cs, reset=epd_reset, baudrate=1000000)
 time.sleep(1)
 
-# For issues with display not updating top/bottom rows correctly try setting colstart to 8 or 0
+# For issues with display not updating top/bottom rows correctly set colstart to 8, 0, or -8
 display = adafruit_ssd1680.SSD1680(
-    display_bus,
-    width=250,
-    height=122,
-    busy_pin=epd_busy,
-    highlight_color=0xFF0000,
-    rotation=90,
-    colstart=-8,
+    display_bus, width=296, height=128, busy_pin=epd_busy, rotation=270, colstart=0
 )
 
-
 g = displayio.Group()
-
 
 pic = displayio.OnDiskBitmap("/display-ruler-640x360.bmp")
 t = displayio.TileGrid(pic, pixel_shader=pic.pixel_shader)

@@ -43,7 +43,7 @@ display = adafruit_ssd1680.SSD1680(
 g = displayio.Group()
 
 
-pic = displayio.OnDiskBitmap("/display-ruler.bmp")
+pic = displayio.OnDiskBitmap("/display-ruler-640x360.bmp")
 
 t = displayio.TileGrid(pic, pixel_shader=pic.pixel_shader)
 
