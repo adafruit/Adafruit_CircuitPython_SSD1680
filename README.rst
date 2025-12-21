@@ -92,6 +92,7 @@ Usage Example
     )
     time.sleep(1)
 
+    # For issues with display not updating top/bottom rows correctly set colstart to 8, 0, or -8    
     display = adafruit_ssd1680.SSD1680(
         display_bus,
         width=250,
@@ -99,6 +100,7 @@ Usage Example
         busy_pin=epd_busy,
         highlight_color=0xFF0000,
         rotation=270,
+        colstart=-8,  # Comment out for older displays
     )
 
     g = displayio.Group()
