@@ -92,7 +92,7 @@ Usage Example
     )
     time.sleep(1)
 
-    # For issues with display not updating top/bottom rows correctly set colstart to 8, 0, or -8    
+    # For issues with display not updating top/bottom rows correctly set colstart to 8, 0, or -8
     display = adafruit_ssd1680.SSD1680(
         display_bus,
         width=250,
