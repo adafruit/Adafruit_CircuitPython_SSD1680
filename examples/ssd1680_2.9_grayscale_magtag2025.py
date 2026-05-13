@@ -124,7 +124,7 @@ displayio.release_displays()
 panel_id = detect_ssd1680_panel()
 print(f"SSD1680 User ID first byte: 0x{panel_id:02x}")
 
-if panel_id in (0x44, 0xCA):
+if panel_id in {0x44, 0xCA}:
     print("Detected: FPC-7519rev.b panel")
     vcom = 0x24
     colstart = 8
