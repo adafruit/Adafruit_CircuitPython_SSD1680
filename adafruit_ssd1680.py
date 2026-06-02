@@ -191,12 +191,18 @@ class SSD1680(EPaperDisplay):
             # No reset pin defined, so no deep sleeping
             stop_sequence = b""
         load_lut = b""
+        enable_color_ram = b""
         display_update_mode = bytearray(_DISPLAY_UPDATE_MODE)
         if custom_lut:
             load_lut = b"\x32" + len(custom_lut).to_bytes(2) + custom_lut
             display_update_mode[-1] = 0xC7
+            if kwargs.get("grayscale", False):
+                # Enable COLOR RAM as second source (required for 4-gray mode)
+                enable_color_ram = b"\x21\x00\x02\x00\x80"
 
-        start_sequence = bytearray(_START_SEQUENCE + load_lut + display_update_mode)
+        start_sequence = bytearray(
+            _START_SEQUENCE + enable_color_ram + load_lut + display_update_mode
+        )
         start_sequence[15] = vcom
 
         start_sequence[24] = vsh2
