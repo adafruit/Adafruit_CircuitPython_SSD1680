@@ -108,6 +108,257 @@ FPC7519_LUT = (
 )
 
 
+_SSD1683_START_SEQUENCE = (
+    b"\x12\x80\x00\x0a"  # SW_RESET, 10ms delay
+    b"\x0c\x00\x04\x8b\x9c\xa4\x0f"  # BOOST_SOFTSTART
+    b"\x11\x00\x01\x03"  # RAM data entry mode
+    b"\x3c\x00\x01\x03"  # border
+    b"\x21\x00\x02\x00\x00"  # DISP_CTRL1 (4-gray dual-RAM)
+    b"\x3f\x00\x01\x07"  # END_OPTION
+    b"\x03\x00\x01\x17"  # gate voltage
+    b"\x04\x00\x03\x41\xa8\x32"  # source voltage
+    b"\x2c\x00\x01\x30"  # VCOM (default 0x30, offset 41)
+    b"\x4e\x00\x01\x00"  # RAM X count
+    b"\x4f\x00\x02\x00\x00"  # RAM Y count
+    b"\x01\x00\x03\x00\x00\x00"  # driver output control (gate lo/hi at offsets 54/55)
+)
+
+_SSD1683_DISPLAY_UPDATE_MODE = b"\x22\x00\x01\xcf"  # 4-gray LUT-based update
+
+# 4-gray LUT for GDEY042T81 / FPC-190 (GxEPD2 + ThinkInk verified)
+SSD1683_GRAY4_LUT = bytes(
+    [
+        0x01,
+        0x0A,
+        0x1B,
+        0x0F,
+        0x03,
+        0x01,
+        0x01,
+        0x05,
+        0x0A,
+        0x01,
+        0x0A,
+        0x01,
+        0x01,
+        0x01,
+        0x05,
+        0x08,
+        0x03,
+        0x02,
+        0x04,
+        0x01,
+        0x01,
+        0x01,
+        0x04,
+        0x04,
+        0x02,
+        0x00,
+        0x01,
+        0x01,
+        0x01,
+        0x00,
+        0x00,
+        0x00,
+        0x00,
+        0x01,
+        0x01,
+        0x01,
+        0x00,
+        0x00,
+        0x00,
+        0x00,
+        0x01,
+        0x01,
+        0x01,
+        0x0A,
+        0x1B,
+        0x0F,
+        0x03,
+        0x01,
+        0x01,
+        0x05,
+        0x4A,
+        0x01,
+        0x8A,
+        0x01,
+        0x01,
+        0x01,
+        0x05,
+        0x48,
+        0x03,
+        0x82,
+        0x84,
+        0x01,
+        0x01,
+        0x01,
+        0x84,
+        0x84,
+        0x82,
+        0x00,
+        0x01,
+        0x01,
+        0x01,
+        0x00,
+        0x00,
+        0x00,
+        0x00,
+        0x01,
+        0x01,
+        0x01,
+        0x00,
+        0x00,
+        0x00,
+        0x00,
+        0x01,
+        0x01,
+        0x01,
+        0x0A,
+        0x1B,
+        0x8F,
+        0x03,
+        0x01,
+        0x01,
+        0x05,
+        0x4A,
+        0x01,
+        0x8A,
+        0x01,
+        0x01,
+        0x01,
+        0x05,
+        0x48,
+        0x83,
+        0x82,
+        0x04,
+        0x01,
+        0x01,
+        0x01,
+        0x04,
+        0x04,
+        0x02,
+        0x00,
+        0x01,
+        0x01,
+        0x01,
+        0x00,
+        0x00,
+        0x00,
+        0x00,
+        0x01,
+        0x01,
+        0x01,
+        0x00,
+        0x00,
+        0x00,
+        0x00,
+        0x01,
+        0x01,
+        0x01,
+        0x8A,
+        0x1B,
+        0x8F,
+        0x03,
+        0x01,
+        0x01,
+        0x05,
+        0x4A,
+        0x01,
+        0x8A,
+        0x01,
+        0x01,
+        0x01,
+        0x05,
+        0x48,
+        0x83,
+        0x02,
+        0x04,
+        0x01,
+        0x01,
+        0x01,
+        0x04,
+        0x04,
+        0x02,
+        0x00,
+        0x01,
+        0x01,
+        0x01,
+        0x00,
+        0x00,
+        0x00,
+        0x00,
+        0x01,
+        0x01,
+        0x01,
+        0x00,
+        0x00,
+        0x00,
+        0x00,
+        0x01,
+        0x01,
+        0x01,
+        0x8A,
+        0x9B,
+        0x8F,
+        0x03,
+        0x01,
+        0x01,
+        0x05,
+        0x4A,
+        0x01,
+        0x8A,
+        0x01,
+        0x01,
+        0x01,
+        0x05,
+        0x48,
+        0x03,
+        0x42,
+        0x04,
+        0x01,
+        0x01,
+        0x01,
+        0x04,
+        0x04,
+        0x42,
+        0x00,
+        0x01,
+        0x01,
+        0x01,
+        0x00,
+        0x00,
+        0x00,
+        0x00,
+        0x01,
+        0x01,
+        0x01,
+        0x00,
+        0x00,
+        0x00,
+        0x00,
+        0x01,
+        0x01,
+        0x00,
+        0x00,
+        0x00,
+        0x00,
+        0x00,
+        0x00,
+        0x00,
+        0x00,
+        0x00,
+        0x00,
+        0x00,
+        0x00,
+        0x00,
+        0x00,
+        0x02,
+        0x00,
+        0x00,
+    ]
+)  # 227 bytes — GDEY042T81 / FPC-190
+
+
 def detect_ssd1680_panel(data_pin, clk_pin, cs_pin, dc_pin, rst_pin):
     """Read SSD1680 User ID (register 0x2E) via half-duplex bitbang SPI.
 
@@ -221,6 +472,76 @@ class SSD1680(EPaperDisplay):
             **kwargs,
             ram_width=250,
             ram_height=296,
+            busy_state=True,
+            write_black_ram_command=0x24,
+            write_color_ram_command=0x26,
+            set_column_window_command=0x44,
+            set_row_window_command=0x45,
+            set_current_column_command=0x4E,
+            set_current_row_command=0x4F,
+            refresh_display_command=0x20,
+            always_toggle_chip_select=False,
+            address_little_endian=True,
+            two_byte_sequence_length=True,
+        )
+
+
+# pylint: disable=too-few-public-methods
+class SSD1683(EPaperDisplay):
+    r"""SSD1683 driver for 4-gray grayscale e-paper displays.
+
+    Designed for the 4.2" 400×300 GDEY042T81 panel (#6381, FPC-190 ribbon).
+    Gate lines run along the height dimension (300), so DRIVER_CONTROL is set
+    from height rather than width.
+
+    :param bus: The data bus the display is on
+    :param \**kwargs:
+        See below
+
+    :Keyword Arguments:
+        * *width* (``int``) --
+          Display width (400 for the 4.2" panel)
+        * *height* (``int``) --
+          Display height (300 for the 4.2" panel)
+        * *rotation* (``int``) --
+          Display rotation
+        * *vcom* (``int``) --
+          VCOM voltage register value (default 0x30)
+        * *custom_lut* (``bytes``) --
+          Custom waveform LUT; pass ``SSD1683_GRAY4_LUT`` for 4-gray mode
+    """
+
+    def __init__(self, bus: FourWire, vcom: int = 0x30, custom_lut: bytes = b"", **kwargs) -> None:
+        if "colstart" not in kwargs:
+            kwargs["colstart"] = 0
+        stop_sequence = bytearray(_STOP_SEQUENCE)
+        try:
+            bus.reset()
+        except RuntimeError:
+            stop_sequence = b""
+        load_lut = b""
+        display_update_mode = bytearray(_SSD1683_DISPLAY_UPDATE_MODE)
+        if custom_lut:
+            load_lut = b"\x32" + len(custom_lut).to_bytes(2) + custom_lut
+
+        start_sequence = bytearray(_SSD1683_START_SEQUENCE + load_lut + display_update_mode)
+        start_sequence[41] = vcom
+
+        width = kwargs["width"]
+        height = kwargs["height"]
+        if "rotation" in kwargs and kwargs["rotation"] % 180 != 90:
+            width, height = height, width
+        # SSD1683 4.2" panel: gate lines run along the height dimension
+        start_sequence[54] = (height - 1) & 0xFF
+        start_sequence[55] = ((height - 1) >> 8) & 0xFF
+
+        super().__init__(
+            bus,
+            start_sequence,
+            stop_sequence,
+            **kwargs,
+            ram_width=400,
+            ram_height=300,
             busy_state=True,
             write_black_ram_command=0x24,
             write_color_ram_command=0x26,
