@@ -109,7 +109,7 @@ FPC7519_LUT = (
 
 
 _SSD1683_START_SEQUENCE = (
-    b"\x12\x80\x00\xc8"  # SW_RESET, 200ms delay (cold-boot: reset/charge-pump settle before LUT load)
+    b"\x12\x80\x00\xc8"  # SW_RESET + 200ms delay (cold-boot charge-pump settle)
     b"\x0c\x00\x04\x8b\x9c\xa4\x0f"  # BOOST_SOFTSTART
     b"\x11\x00\x01\x03"  # RAM data entry mode
     b"\x3c\x00\x01\x03"  # border
