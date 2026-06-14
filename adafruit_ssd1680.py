@@ -109,11 +109,11 @@ FPC7519_LUT = (
 
 
 _SSD1683_START_SEQUENCE = (
-    b"\x12\x80\x00\x0a"  # SW_RESET, 10ms delay
+    b"\x12\x80\x00\xc8"  # SW_RESET, 200ms delay (cold-boot: reset/charge-pump settle before LUT load)
     b"\x0c\x00\x04\x8b\x9c\xa4\x0f"  # BOOST_SOFTSTART
     b"\x11\x00\x01\x03"  # RAM data entry mode
     b"\x3c\x00\x01\x03"  # border
-    b"\x21\x00\x02\x00\x00"  # DISP_CTRL1 (4-gray dual-RAM)
+    b"\x21\x00\x02\x00\x00"  # DISP_CTRL1 (no source-line shift; matches adafruit_epd PR #111)
     b"\x3f\x00\x01\x07"  # END_OPTION
     b"\x03\x00\x01\x17"  # gate voltage
     b"\x04\x00\x03\x41\xa8\x32"  # source voltage
@@ -125,238 +125,45 @@ _SSD1683_START_SEQUENCE = (
 
 _SSD1683_DISPLAY_UPDATE_MODE = b"\x22\x00\x01\xcf"  # 4-gray LUT-based update
 
-# 4-gray LUT for GDEY042T81 / FPC-190 (GxEPD2 + ThinkInk verified)
-SSD1683_GRAY4_LUT = bytes(
-    [
-        0x01,
-        0x0A,
-        0x1B,
-        0x0F,
-        0x03,
-        0x01,
-        0x01,
-        0x05,
-        0x0A,
-        0x01,
-        0x0A,
-        0x01,
-        0x01,
-        0x01,
-        0x05,
-        0x08,
-        0x03,
-        0x02,
-        0x04,
-        0x01,
-        0x01,
-        0x01,
-        0x04,
-        0x04,
-        0x02,
-        0x00,
-        0x01,
-        0x01,
-        0x01,
-        0x00,
-        0x00,
-        0x00,
-        0x00,
-        0x01,
-        0x01,
-        0x01,
-        0x00,
-        0x00,
-        0x00,
-        0x00,
-        0x01,
-        0x01,
-        0x01,
-        0x0A,
-        0x1B,
-        0x0F,
-        0x03,
-        0x01,
-        0x01,
-        0x05,
-        0x4A,
-        0x01,
-        0x8A,
-        0x01,
-        0x01,
-        0x01,
-        0x05,
-        0x48,
-        0x03,
-        0x82,
-        0x84,
-        0x01,
-        0x01,
-        0x01,
-        0x84,
-        0x84,
-        0x82,
-        0x00,
-        0x01,
-        0x01,
-        0x01,
-        0x00,
-        0x00,
-        0x00,
-        0x00,
-        0x01,
-        0x01,
-        0x01,
-        0x00,
-        0x00,
-        0x00,
-        0x00,
-        0x01,
-        0x01,
-        0x01,
-        0x0A,
-        0x1B,
-        0x8F,
-        0x03,
-        0x01,
-        0x01,
-        0x05,
-        0x4A,
-        0x01,
-        0x8A,
-        0x01,
-        0x01,
-        0x01,
-        0x05,
-        0x48,
-        0x83,
-        0x82,
-        0x04,
-        0x01,
-        0x01,
-        0x01,
-        0x04,
-        0x04,
-        0x02,
-        0x00,
-        0x01,
-        0x01,
-        0x01,
-        0x00,
-        0x00,
-        0x00,
-        0x00,
-        0x01,
-        0x01,
-        0x01,
-        0x00,
-        0x00,
-        0x00,
-        0x00,
-        0x01,
-        0x01,
-        0x01,
-        0x8A,
-        0x1B,
-        0x8F,
-        0x03,
-        0x01,
-        0x01,
-        0x05,
-        0x4A,
-        0x01,
-        0x8A,
-        0x01,
-        0x01,
-        0x01,
-        0x05,
-        0x48,
-        0x83,
-        0x02,
-        0x04,
-        0x01,
-        0x01,
-        0x01,
-        0x04,
-        0x04,
-        0x02,
-        0x00,
-        0x01,
-        0x01,
-        0x01,
-        0x00,
-        0x00,
-        0x00,
-        0x00,
-        0x01,
-        0x01,
-        0x01,
-        0x00,
-        0x00,
-        0x00,
-        0x00,
-        0x01,
-        0x01,
-        0x01,
-        0x8A,
-        0x9B,
-        0x8F,
-        0x03,
-        0x01,
-        0x01,
-        0x05,
-        0x4A,
-        0x01,
-        0x8A,
-        0x01,
-        0x01,
-        0x01,
-        0x05,
-        0x48,
-        0x03,
-        0x42,
-        0x04,
-        0x01,
-        0x01,
-        0x01,
-        0x04,
-        0x04,
-        0x42,
-        0x00,
-        0x01,
-        0x01,
-        0x01,
-        0x00,
-        0x00,
-        0x00,
-        0x00,
-        0x01,
-        0x01,
-        0x01,
-        0x00,
-        0x00,
-        0x00,
-        0x00,
-        0x01,
-        0x01,
-        0x00,
-        0x00,
-        0x00,
-        0x00,
-        0x00,
-        0x00,
-        0x00,
-        0x00,
-        0x00,
-        0x00,
-        0x00,
-        0x00,
-        0x00,
-        0x00,
-        0x02,
-        0x00,
-        0x00,
-    ]
-)  # 227 bytes — GDEY042T81 / FPC-190
+# 4-gray waveform LUT for GDEY042T81 / FPC-190 — native GxEPD2 order (unswapped).
+# Correct level order relies on the BW/Color RAM banks being swapped in __init__
+# (write_black_ram_command=0x26, write_color_ram_command=0x24).
+SSD1683_GRAY4_LUT = bytes.fromhex(
+    # 5 waveform groups x 6 phase-rows (7 B each); GxEPD2 GDEY042T81 lut_4G[0:210]
+    "010A1B0F030101"  # group 0
+    "050A010A010101"
+    "05080302040101"
+    "01040402000101"
+    "01000000000101"
+    "01000000000101"
+    "010A1B0F030101"  # group 1
+    "054A018A010101"
+    "05480382840101"
+    "01848482000101"
+    "01000000000101"
+    "01000000000101"
+    "010A1B8F030101"  # group 2
+    "054A018A010101"
+    "05488382040101"
+    "01040402000101"
+    "01000000000101"
+    "01000000000101"
+    "018A1B8F030101"  # group 3
+    "054A018A010101"
+    "05488302040101"
+    "01040402000101"
+    "01000000000101"
+    "01000000000101"
+    "018A9B8F030101"  # group 4
+    "054A018A010101"
+    "05480342040101"
+    "01040442000101"
+    "01000000000101"
+    "01000000000101"
+    "00000000000000"  # 2 reserved phase-rows
+    "00000000000000"
+    "020000"  # frame-rate / repeat tail
+)  # 227 bytes — GDEY042T81 / FPC-190 (matches Adafruit_EPD ssd1683.py)
 
 
 def detect_ssd1680_panel(data_pin, clk_pin, cs_pin, dc_pin, rst_pin):
@@ -512,11 +319,17 @@ class SSD1683(EPaperDisplay):
     """
 
     def __init__(self, bus: FourWire, vcom: int = 0x30, custom_lut: bytes = b"", **kwargs) -> None:
+        kwargs["grayscale"] = True  # SSD1683 always runs in 4-gray mode
         if "colstart" not in kwargs:
             kwargs["colstart"] = 0
         stop_sequence = bytearray(_STOP_SEQUENCE)
         try:
             bus.reset()
+            # Cold-boot settle: after a true power-on, the controller's regulators
+            # need time before the start sequence loads the LUT (mirrors the
+            # framebuffer driver's sleep(0.1)+busy_wait). A short delay here plus the
+            # longer SW_RESET delay below prevents a corrupt-LUT speckle on cold boot.
+            time.sleep(0.2)
         except RuntimeError:
             stop_sequence = b""
         load_lut = b""
@@ -529,22 +342,23 @@ class SSD1683(EPaperDisplay):
 
         width = kwargs["width"]
         height = kwargs["height"]
+        # Save gate count before any rotation swap — always the physical height (300)
+        gate_height = height
         if "rotation" in kwargs and kwargs["rotation"] % 180 != 90:
             width, height = height, width
-        # SSD1683 4.2" panel: gate lines run along the height dimension
-        start_sequence[54] = (height - 1) & 0xFF
-        start_sequence[55] = ((height - 1) >> 8) & 0xFF
+        start_sequence[54] = (gate_height - 1) & 0xFF
+        start_sequence[55] = ((gate_height - 1) >> 8) & 0xFF
 
         super().__init__(
             bus,
             start_sequence,
             stop_sequence,
             **kwargs,
-            ram_width=400,
+            ram_width=255,  # <256 forces 1-byte X (0x44) addressing; SSD168x X is byte-addressed
             ram_height=300,
             busy_state=True,
-            write_black_ram_command=0x24,
-            write_color_ram_command=0x26,
+            write_black_ram_command=0x26,  # swapped vs SSD1680: displayio packs luma
+            write_color_ram_command=0x24,  # bit7->black,bit6->color; SSD1683 wants the opposite
             set_column_window_command=0x44,
             set_row_window_command=0x45,
             set_current_column_command=0x4E,
